@@ -1,0 +1,90 @@
+<script setup lang="ts">
+import { useUserStore } from '~/stores/user'
+
+const user = useUserStore()
+const name = ref(user.savedName)
+
+const router = useRouter()
+const go = () => {
+  if (name.value)
+    router.push(`/hi/${encodeURIComponent(name.value)}`)
+}
+
+const { t } = useI18n()
+
+import Papa from 'papaparse';
+
+var targets = null;
+
+function setTargets(newTargets){
+    targets = newTargets;
+
+    console.dir(newTargets);
+}
+
+Papa.parse(
+  "https://docs.google.com/spreadsheets/d/1rzIfGbkmdJaWcXThfzpX0ERIYKE5c6P1jfUSVCHNhFA/gviz/tq?tqx=out:csv&sheet=Targets",
+  {
+      download: true,
+      complete: (result) => {
+          setTargets(result.data);
+      }
+  });
+</script>
+
+<template>
+  <div>
+    <ul v-if="targets">
+      <li v-for="item in targets">
+        {{ item }}
+      </li>
+    </ul>
+
+    <div text-4xl v-else>
+      <div i-carbon-campsite inline-block />
+    </div>
+
+    <p>
+      <a rel="noreferrer" href="https://github.com/antfu/vitesse" target="_blank">
+        Vitesse
+      </a>
+    </p>
+    <p>
+      <em text-sm opacity-75>{{ t('intro.desc') }}</em>
+    </p>
+
+    <div py-4 />
+
+    <input
+      id="input"
+      v-model="name"
+      :placeholder="t('intro.whats-your-name')"
+      :aria-label="t('intro.whats-your-name')"
+      type="text"
+      autocomplete="false"
+      p="x4 y2"
+      w="250px"
+      text="center"
+      bg="transparent"
+      border="~ rounded gray-200 dark:gray-700"
+      outline="none active:none"
+      @keydown.enter="go"
+    >
+    <label class="hidden" for="input">{{ t('intro.whats-your-name') }}</label>
+
+    <div>
+      <button
+        btn m-3 text-sm
+        :disabled="!name"
+        @click="go"
+      >
+        {{ t('button.go') }}
+      </button>
+    </div>
+  </div>
+</template>
+
+<route lang="yaml">
+meta:
+  layout: home
+</route>

@@ -8,8 +8,10 @@ The target list is downlodaded from [here](https://docs.google.com/spreadsheets/
 * [Vuejs](https://vuejs.org/)
 * [Vite](https://vitejs.dev/)
 * [Vitesse](https://github.com/antfu/vitesse)
+* [Papaparse](https://www.papaparse.com/) - downloading and parsing csv file
 
 # Getting started
 
 * Checkout sources
 * Run `npm install`
+* Run server `npm run dev`
