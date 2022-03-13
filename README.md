@@ -8,3 +8,8 @@ The target list is downlodaded from [here](https://docs.google.com/spreadsheets/
 * [Vuejs](https://vuejs.org/)
 * [Vite](https://vitejs.dev/)
 * [Vitesse](https://github.com/antfu/vitesse)
+
+# Getting started
+
+* Checkout sources
+* Run `npm install`
