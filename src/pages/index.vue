@@ -12,14 +12,13 @@ const go = () => {
 
 const { t } = useI18n()
 
-import Papa from 'papaparse';
+import Papa from 'papaparse'
 
-var targets = null;
+let targets = ref(null)
 
-function setTargets(newTargets){
-    targets = newTargets;
-
-    console.dir(newTargets);
+const setTargets = (newTargets) => {
+    targets.value = newTargets
+    console.dir(newTargets)
 }
 
 Papa.parse(
@@ -27,19 +26,18 @@ Papa.parse(
   {
       download: true,
       complete: (result) => {
-          setTargets(result.data);
+          setTargets(result.data)
       }
-  });
+  })
 </script>
 
 <template>
   <div>
-    <ul v-if="targets">
-      <li v-for="item in targets">
-        {{ item }}
-      </li>
-    </ul>
-
+      <ul v-if="targets">
+          <li v-for="item in targets">
+              {{ item[0] }}
+          </li>
+      </ul>
     <div text-4xl v-else>
       <div i-carbon-campsite inline-block />
     </div>
