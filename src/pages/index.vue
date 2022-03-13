@@ -17,8 +17,13 @@ import Papa from 'papaparse'
 let targets = ref(null)
 
 const setTargets = (newTargets) => {
-    targets.value = newTargets
-    console.dir(newTargets)
+    targets.value = newTargets.slice(1).map((row) => {
+        return {
+            url: row[0],
+            raw: row
+        }
+
+    })
 }
 
 Papa.parse(
@@ -35,7 +40,7 @@ Papa.parse(
   <div>
       <ul v-if="targets">
           <li v-for="item in targets">
-              {{ item[0] }}
+              {{ item.url }}
           </li>
       </ul>
     <div text-4xl v-else>
