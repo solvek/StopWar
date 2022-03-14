@@ -8,7 +8,7 @@ import Papa from 'papaparse'
 
 let targets = ref(null)
 
-const setTargets = (newTargets) => {
+const setTargets = (newTargets: Array<any>) => {
     targets.value = newTargets.slice(1).map((row) => {
         return {
             url: row[0],
@@ -31,12 +31,12 @@ Papa.parse(
 <template>
   <div>
       <ul v-if="targets">
-          <li v-for="item in targets">
+          <li v-for="item in targets"  :key="item.url">
               {{ item.url }}
           </li>
       </ul>
     <div text-4xl v-else>
-      <div i-carbon-campsite inline-block />
+      <div i-carbon-in-progress inline-block />
     </div>
   </div>
 </template>
