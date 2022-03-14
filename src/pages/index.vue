@@ -6,16 +6,17 @@ const { t } = useI18n()
 
 import Papa from 'papaparse'
 
-let targets = ref(null)
+import {Ddos} from '~/ddos'
+
+const ddos = new Ddos()
 
 const setTargets = (newTargets: Array<any>) => {
-    targets.value = newTargets.slice(1).map((row) => {
+    ddos.setTargets(newTargets.slice(1).map((row) => {
         return {
             url: row[0],
             raw: row
         }
-
-    })
+    }))
 }
 
 Papa.parse(
@@ -30,14 +31,14 @@ Papa.parse(
 
 <template>
   <div>
-      <ul v-if="targets">
-          <li v-for="item in targets"  :key="item.url">
-              {{ item.url }}
-          </li>
-      </ul>
-    <div text-4xl v-else>
+    <div text-4xl v-if="ddos.isEmpty()">
       <div i-carbon-in-progress inline-block />
     </div>
+      <ul v-else>
+          <li v-for="item in ddos.targets.value"  :key="item.url">
+              {{ item.url }}, requests: {{item.requests}}, errors: {{item.errors}}
+          </li>
+      </ul>
   </div>
 </template>
 
