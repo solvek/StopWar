@@ -36,6 +36,10 @@ setInterval(reloadTargets, 30*60*1000)
 
 <template>
   <div>
+    <div text-4xl>
+      {{t("glory")}}
+    </div>
+
     <div text-4xl v-if="ddos.isEmpty()">
       <div i-carbon-in-progress inline-block />
     </div>
