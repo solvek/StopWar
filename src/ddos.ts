@@ -70,12 +70,12 @@ export class Ddos {
                         if (error.code === 20) return;
 
                         target.errors++
-                        // targets[target].error_message = error.message;
+                        console.log("failed1 "+target_url+error.message)
                     })
                     .then(response => {
                         if (response && !response.ok) {
                             target.errors++
-                            // targets[target].error_message = response.statusText;
+                            console.log("failed2 "+target_url+" " + response.statusText)
                         }
 
                         target.requests
@@ -83,12 +83,4 @@ export class Ddos {
             );
         }
     }
-
-    // setRequests(requests: number){
-    //     this.targets.value[0].requests = requests
-    // }
-    //
-    // setErrors(errors: number){
-    //     this.targets.value[0].errors = errors
-    // }
 }
