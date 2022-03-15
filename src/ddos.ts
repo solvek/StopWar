@@ -22,6 +22,7 @@ export class Ddos {
     }
 
     setTargets(rawTargets: Array<TargetDef>){
+        this.queue = []
         this.targets.value = rawTargets.map((def) => {
             return {
                 url: def.url,
@@ -54,8 +55,9 @@ export class Ddos {
     }
 
     private async flood(idx: number) {
-        const target = this.targets.value[idx]
         for (;;) {
+            if (idx >= this.targets.value.length) break
+            const target = this.targets.value[idx]
             if (this.queue.length > this.CONCURRENCY_LIMIT) {
                 // eslint-disable-next-line no-await-in-loop
                 await this.queue.shift();

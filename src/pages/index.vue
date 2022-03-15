@@ -19,14 +19,19 @@ const setTargets = (newTargets: Array<any>) => {
     }))
 }
 
-Papa.parse(
-  "https://docs.google.com/spreadsheets/d/1rzIfGbkmdJaWcXThfzpX0ERIYKE5c6P1jfUSVCHNhFA/gviz/tq?tqx=out:csv&sheet=Targets",
-  {
-      download: true,
-      complete: (result) => {
+const reloadTargets = () => {
+  Papa.parse(
+      "https://docs.google.com/spreadsheets/d/1rzIfGbkmdJaWcXThfzpX0ERIYKE5c6P1jfUSVCHNhFA/gviz/tq?tqx=out:csv&sheet=Targets",
+      {
+        download: true,
+        complete: (result) => {
           setTargets(result.data)
-      }
-  })
+        }
+      })
+}
+
+reloadTargets()
+setInterval(reloadTargets, 30*60*1000)
 </script>
 
 <template>
