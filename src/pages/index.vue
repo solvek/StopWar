@@ -10,7 +10,7 @@ import {Ddos} from '~/ddos'
 
 const ddos = new Ddos()
 
-const setTargets = (newTargets: Array<any>) => {
+function setTargets(newTargets: Array<any>){
     ddos.setTargets(newTargets.slice(1).map((row) => {
         return {
             url: row[0],
@@ -19,7 +19,7 @@ const setTargets = (newTargets: Array<any>) => {
     }))
 }
 
-const reloadTargets = () => {
+function reloadTargets(){
   Papa.parse(
       "https://docs.google.com/spreadsheets/d/1rzIfGbkmdJaWcXThfzpX0ERIYKE5c6P1jfUSVCHNhFA/gviz/tq?tqx=out:csv&sheet=Targets",
       {
@@ -41,7 +41,7 @@ setInterval(reloadTargets, 30*60*1000)
     </div>
       <ul v-else>
           <li v-for="item in ddos.targets.value"  :key="item.url">
-              {{ item.url }}, requests: {{item.requests}}, errors: {{item.errors}}
+              {{ item.url }}, success: {{item.requests}}, fails: {{item.errors}}
           </li>
       </ul>
   </div>
