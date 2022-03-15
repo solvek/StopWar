@@ -1,0 +1,14 @@
+button:
+  about: Про нас
+  back: Назад
+  go: Перейти
+  home: Додому
+  toggle_dark: День/ніч
+  toggle_langs: Змінити мову
+intro:
+  desc: Атака ворожих сайтів
+  dynamic-route: Динамічний шлях
+  hi: Привіт, {name}!
+  aka: Також відомий як
+  whats-your-name: Як тебе звуть?
+not-found: Не знайдено
