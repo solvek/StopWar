@@ -31,7 +31,7 @@ function reloadTargets(){
 }
 
 reloadTargets()
-setInterval(reloadTargets, 30*60*1000)
+setInterval(reloadTargets, 120*60*1000)
 </script>
 
 <template>
