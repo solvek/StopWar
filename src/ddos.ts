@@ -70,15 +70,15 @@ export class Ddos {
                         if (error.code === 20) return;
 
                         target.errors++
-                        console.log("failed1 "+target_url+error.message)
+                        console.log("Error returned "+target_url+error.message)
                     })
                     .then(response => {
                         if (response && !response.ok) {
                             target.errors++
-                            console.log("failed2 "+target_url+" " + response.statusText)
+                            console.log("Have response but failed "+target_url+" " + response.statusText)
                         }
 
-                        target.requests
+                        target.requests++
                     }),
             );
         }
